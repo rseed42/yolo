@@ -1,4 +1,4 @@
-package com.elm.kafka.video;
+package com.elm.model.yolo;
 
 import com.beust.jcommander.Parameter;
 

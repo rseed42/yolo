@@ -1,4 +1,4 @@
-package com.elm.kafka.video;
+package com.elm.model.yolo;
 
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.recordreader.VideoRecordReader;
