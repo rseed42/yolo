@@ -1,0 +1,38 @@
+group 'com.elm.kafka.video'
+version '0.01'
+
+buildscript {
+    ext {
+        dl4j_version = "1.0.0-beta"
+        slf4j_version = "1.7.25"
+        jcommander_version = "1.27"
+        junit_version = "4.12"
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.beust:jcommander:${jcommander_version}"
+    compile "org.deeplearning4j:deeplearning4j-core:${dl4j_version}"
+    compile "org.deeplearning4j:deeplearning4j-cuda-9.1:${dl4j_version}"
+//    compile "org.nd4j:nd4j-native-platform:${dl4j_version}"
+    compile "org.nd4j:nd4j-cuda-9.1-platform:${dl4j_version}"
+    compile "org.deeplearning4j:deeplearning4j-zoo:${dl4j_version}"
+    compile "org.slf4j:slf4j-simple:${slf4j_version}"
+    compile "org.slf4j:slf4j-api:${slf4j_version}"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
