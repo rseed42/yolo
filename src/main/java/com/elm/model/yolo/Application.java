@@ -61,8 +61,8 @@ public class Application {
         double detectionThreshold = 0.5;
 
         // parameters for the training phase
-        int batchSize = 10;
-        int nEpochs = 20;
+        int batchSize = cliArgs.batchSize;
+        int nEpochs = cliArgs.numEpochs;
         double learningRate = 1e-4;
         double lrMomentum = 0.9;
 
@@ -96,7 +96,9 @@ public class Application {
 
 
         ComputationGraph model;
-        String modelFilename = "model.zip";
+        String modelFilename = cliArgs.parameterFilename;
+
+        log.info("Trying to build or load the model from existing file...");
 
         if (new File(modelFilename).exists()) {
             log.info("Load model...");
@@ -144,10 +146,11 @@ public class Application {
                     .setOutputs("outputs")
                     .build();
 
+            log.info("Here's the network architecture:");
             System.out.println(model.summary(InputType.convolutional(height, width, nChannels)));
 
 
-            log.info("Train model...");
+            log.info("Start training model...");
 
             model.setListeners(new ScoreIterationListener(1));
             for (int i = 0; i < nEpochs; i++) {
